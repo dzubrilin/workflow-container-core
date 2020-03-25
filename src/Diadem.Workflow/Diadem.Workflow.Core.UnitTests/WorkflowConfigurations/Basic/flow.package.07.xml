@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- package/parent workflow -->
+<workflow id="724559E4-A035-469A-A56D-7D7579944F9D" class="Simple V0" code="test.v.0.0.1" name="Test v.0.0.1"
+          version="0.0.1.0">
+    <events>
+        <event code="initial" type="initial" />
+        <event code="process" type="application" />
+    </events>
+    <states>
+        <state code="new" type="initial">
+            <activities>
+                <activity code="noOp" type="synchronous">
+                    <retryPolicy count="2" delay="50" />
+                </activity>
+                <activity code="48E784AB-E94F-4B57-ADC5-0548BCA52BE2"
+                          script="entity.SetProperty(&quot;IsSent&quot;, true);"
+                          scriptType="csharp"
+                          type="synchronous" />
+            </activities>
+            <events>
+                <event code="initial" handlerCode="noOp" />
+            </events>
+            <transitions>
+                <transition moveToState="process" type="synchronous" />
+            </transitions>
+        </state>
+        <state code="process" type="application">
+            <activities>
+                <activity code="noOp" type="synchronous" />
+                <activity code="8153B3E1-D52C-4E00-AFD1-C8066FA74AF4"
+                          script="entity.SetProperty(&quot;IsSentNotExisting&quot;, true);"
+                          scriptType="csharp"
+                          type="synchronous">
+                    <retryPolicy count="2" delay="50" onFailureTransitionToUse="processFailed" />
+                </activity>
+            </activities>
+            <events>
+                <event code="process" handlerCode="noOp" />
+            </events>
+            <transitions>
+                <transition moveToState="processFailed" type="synchronous" />
+                <transition moveToState="final" type="synchronous" />
+            </transitions>
+        </state>
+        <state code="processFailed" type="application">
+            <activities>
+                <activity code="noOp" type="synchronous" />
+            </activities>
+            <transitions>
+                <transition moveToState="final" type="synchronous" />
+            </transitions>
+        </state>
+        <state code="failed" type="failed">
+            <activities>
+                <activity code="noOp" type="synchronous" />
+            </activities>
+        </state>
+        <state code="final" type="final">
+            <activities>
+                <activity code="noOp" type="synchronous" />
+            </activities>
+        </state>
+    </states>
+</workflow>

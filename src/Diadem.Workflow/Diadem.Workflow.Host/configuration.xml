@@ -1,0 +1,58 @@
+<configurationSections>
+    <configurationSection key="Host">
+        <configuration key="ConfigurationDirectory" value="" />
+    </configurationSection>
+    <configurationSection key="Core">
+        <configuration key="AssetsDirectory" value="..\..\..\..\..\..\libraries\assets\" />
+        <configuration key="TempDirectory" value="C:\Data\temp" />
+    </configurationSection>
+    <configurationSection key="WorkflowRuntime">
+        <configuration key="WorkflowHost" value="rabbitmq://flow-rabbitmq" />
+        <configuration key="WorkflowRequestEndpoint" value="workflow" />
+        <configuration key="WorkflowRuntimeEndpoints">
+            <![CDATA[
+                [
+                    {
+                        'Type': 'RabbitMq',
+                        'Authentication': null,
+                        'Code': 'EntityType::Workflow::Package',
+                        'Address': 'rabbitmq://flow-rabbitmq/Diadem.Workflow.Core.Model:IEntityRequestWorkflowMessage',
+                        'Parameters': null
+                    },
+                    {
+                        'Type': 'RabbitMq',
+                        'Authentication': null,
+                        'Code': 'EntityType::Workflow::PackageParticipant',
+                        'Address': 'rabbitmq://flow-rabbitmq/Diadem.Workflow.Core.Model:IEntityRequestWorkflowMessage',
+                        'Parameters': null
+                    },
+                    {
+                        'Type': 'Http',
+                        'Authentication': {
+                            'Type': 'Basic',
+                            'Parameters': [{ 'Key': 'Username', 'Value': 'AccessKey' }, { 'Key': 'Password', 'Value': '00000000-0000-0000-0000-000000000000' }]
+                        },
+                        'Code': 'remote.api.workflow.*',
+                        'Address': 'http://localhost:5000/api/workflow/status',
+                        'Parameters': [{ 'Key': 'Method', 'Value': 'POST' }]
+                    }
+                ]
+            ]]>
+        </configuration>
+    </configurationSection>
+    <configurationSection key="WorkflowMongoDB">
+        <configuration key="ServerHost" value="localhost" />
+        <configuration key="ServerPort" value="27017" />
+        <configuration key="DatabaseName" value="workflow" />
+        <configuration key="CredentialDatabaseName" value="admin" />
+        <configuration key="CredentialUserName" value="flow" />
+        <configuration key="CredentialPassword" value="flow" />
+    </configurationSection>
+    <configurationSection key="RabbitMQ">
+        <configuration key="Address" value="rabbitmq://localhost" />
+        <configuration key="Port" value="5672" />
+        <configuration key="UserName" value="rabbitmq" />
+        <configuration key="Password" value="rabbitmq" />
+        <configuration key="ReceiveQueueName" value="workflow" />
+    </configurationSection>
+</configurationSections>

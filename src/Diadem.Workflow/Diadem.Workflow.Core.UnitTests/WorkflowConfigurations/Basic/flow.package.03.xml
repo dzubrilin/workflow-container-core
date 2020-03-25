@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<workflow id="BC58C341-498A-4B6B-8A9B-5694E2E05DA8" class="Simple V0" code="test.v.0.0.1" name="Test v.0.0.1"
+          version="0.0.1.0">
+    <events>
+        <event code="initial" type="initial" />
+        <event code="process" type="application" />
+    </events>
+    <states>
+        <state code="new" type="initial">
+            <activities>
+                <activity code="noOp" type="synchronous">
+                    <retryPolicy count="2" delay="50" />
+                </activity>
+                <activity code="8D5B0D3C-18C2-4B70-8D3C-461F87B94CA7"
+                          script="entity.SetProperty(&quot;IsSent&quot;, true);"
+                          scriptType="csharp"
+                          type="synchronous" />
+            </activities>
+            <events>
+                <event code="initial" handlerCode="noOp" />
+            </events>
+            <transitions>
+                <transition moveToState="process" type="asynchronousImmediate" />
+            </transitions>
+        </state>
+        <state code="process" type="application">
+            <activities>
+                <activity code="noOp" type="synchronous" />
+                <activity code="8153B3E1-D52C-4E00-AFD1-C8066FA74AF4"
+                          script="entity.SetProperty(&quot;IsSent&quot;, true);"
+                          scriptType="csharp"
+                          type="synchronous" />
+            </activities>
+            <events>
+                <event code="process" handlerCode="noOp" />
+            </events>
+            <transitions>
+                <transition moveToState="final" type="synchronous" />
+            </transitions>
+        </state>
+        <state code="failed" type="failed">
+            <activities>
+                <activity code="noOp" type="synchronous" />
+            </activities>
+        </state>
+        <state code="final" type="final">
+            <activities>
+                <activity code="noOp" type="synchronous" />
+            </activities>
+        </state>
+    </states>
+</workflow>

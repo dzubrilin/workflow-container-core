@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<workflow id="2C615B22-CBDF-46FF-8A15-84C76C52F475" class="Simple V0.1 with duplicated event declaration" code="test.v.0.0.6-duplicate-event" name="Test v.0.0.6"
+          version="0.0.1.0">
+    <events>
+        <event code="initial" type="initial" />
+        <event code="process" type="application" />
+    </events>
+    <states>
+        <state code="new" type="initial">
+            <activities>
+                <activity code="noOp" type="synchronous">
+                    <retryPolicy count="2" delay="50" />
+                </activity>
+            </activities>
+            <events>
+                <event code="initial" handlerCode="noOp" />
+                <event code="initial" handlerCode="noOp" />
+            </events>
+            <transitions>
+                <transition moveToState="process" type="asynchronousWithDelay" delay="15" />
+            </transitions>
+        </state>
+        <state code="process" type="application">
+            <activities>
+                <activity code="noOp" type="synchronous" />
+            </activities>
+            <events>
+                <event code="process" handlerCode="noOp" />
+            </events>
+            <transitions>
+                <transition moveToState="final" type="synchronous" />
+            </transitions>
+        </state>
+        <state code="failed" type="failed">
+            <activities>
+                <activity code="noOp" type="synchronous" />
+            </activities>
+        </state>
+        <state code="final" type="final">
+            <activities>
+                <activity code="noOp" type="synchronous" />
+            </activities>
+        </state>
+    </states>
+</workflow>

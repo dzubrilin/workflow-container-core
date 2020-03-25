@@ -1,0 +1,70 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <IsPackable>false</IsPackable>
+
+    <ApplicationIcon />
+
+    <OutputType>Library</OutputType>
+
+    <StartupObject />
+
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Serialization\flow.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Configuration\simple.flow.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.CSharp" Version="4.5.0" />
+    <PackageReference Include="Moq" Version="4.10.0" />
+    <PackageReference Include="nunit" Version="3.10.1" />
+    <PackageReference Include="NUnit3TestAdapter" Version="3.10.0" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.8.0" />
+    <PackageReference Include="System.Runtime" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="WorkflowConfigurations\Basic\flow.package.01.xml" />
+    <EmbeddedResource Include="WorkflowConfigurations\Basic\flow.package.02.xml" />
+    <EmbeddedResource Include="WorkflowConfigurations\Basic\flow.package.03.xml" />
+    <EmbeddedResource Include="WorkflowConfigurations\Basic\flow.package.04.xml" />
+    <EmbeddedResource Include="WorkflowConfigurations\Basic\flow.package.05.xml" />
+    <EmbeddedResource Include="WorkflowConfigurations\Basic\flow.package.06.xml" />
+    <EmbeddedResource Include="WorkflowConfigurations\Basic\flow.package.07.activity.retry.failure.xml" />
+    <EmbeddedResource Include="WorkflowConfigurations\Basic\flow.package.07.xml" />
+    <EmbeddedResource Include="WorkflowConfigurations\Basic\flow.package.cyclic.01.xml" />
+    <EmbeddedResource Include="WorkflowConfigurations\Basic\flow.package.cyclic.02.xml" />
+    <EmbeddedResource Include="WorkflowConfigurations\Basic\flow.package.duplicated.event.01.xml" />
+    <EmbeddedResource Include="WorkflowConfigurations\Basic\flow.signer.01.xml" />
+    <None Remove="WorkflowConfigurations\flow.package.cyclic.01.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Diadem.Workflow.Core\Diadem.Workflow.Core.csproj" />
+    <ProjectReference Include="..\Diadem.Workflow.Provider.MongoDb\Diadem.Workflow.Provider.MongoDb.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="MongoDB.Bson, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\libraries\bin\MongoDB\v.2.10.2\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\libraries\bin\MongoDB\v.2.10.2\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+      <HintPath>..\..\..\libraries\bin\MongoDB\v.2.10.2\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed">
+      <HintPath>..\..\..\libraries\bin\Newtonsoft.Json\v.12.0.2.0\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

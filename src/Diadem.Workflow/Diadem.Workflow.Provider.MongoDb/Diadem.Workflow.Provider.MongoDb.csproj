@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>8</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Reference Include="MongoDB.Bson, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\..\libraries\bin\MongoDB\v.2.10.2\MongoDB.Bson.dll</HintPath>
+      </Reference>
+      <Reference Include="MongoDB.Driver, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\..\libraries\bin\MongoDB\v.2.10.2\MongoDB.Driver.dll</HintPath>
+      </Reference>
+      <Reference Include="MongoDB.Driver.Core, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\..\libraries\bin\MongoDB\v.2.10.2\MongoDB.Driver.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="Serilog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=24c2f752a8e58a10">
+        <HintPath>..\..\..\libraries\bin\Serilog\v.2.8.0\netstandard2.0\Serilog.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Diadem.Workflow.Core\Diadem.Workflow.Core.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Autofac" Version="5.1.2" />
+    </ItemGroup>
+
+</Project>

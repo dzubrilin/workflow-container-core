@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- signer/nested workflow -->
+<workflow id="76D74A27-221F-45B3-9C61-EF0AC0070354" class="Signer v.0.1" code="signer.v.0.0.1" name="Signer v.0.0.1"
+          version="0.0.1.0">
+    <events>
+        <event code="initial" type="parentToNestedInitial" />
+        <event code="parentToNestedFailed" type="parentToNestedFailed" />
+        <event code="process" type="application" />
+    </events>
+    <states>
+        <state code="new" type="initial">
+            <activities>
+                <activity code="noOp" type="synchronous">
+                    <retryPolicy count="2" delay="50" />
+                </activity>
+                <activity code="25C1794E-0363-431C-AD71-74CEB8650577"
+                          script="entity.SetProperty(&quot;IsSent&quot;, true);"
+                          scriptType="csharp"
+                          type="synchronous" />
+            </activities>
+            <events>
+                <event code="initial" handlerCode="noOp" />
+            </events>
+            <transitions>
+                <transition moveToState="awaitingBadges" type="synchronous" />
+            </transitions>
+        </state>
+        <state code="awaitingBadges" type="application">
+            <activities>
+                <activity code="noOp" type="synchronous" />
+            </activities>
+            <events>
+                <event code="process"
+                       handlerCode="none"
+                       script="entity.SetProperty(&quot;LastVisited&quot;, System.DateTime.UtcNow);"
+                       scriptType="csharp" />
+            </events>
+            <transitions>
+                <transition moveToState="intermediate"
+                            script="return entity.GetProperty&lt;bool&gt;(&quot;IsSent&quot;);"
+                            scriptType="csharp"
+                            type="synchronous" />
+                <transition moveToState="final" type="synchronous" />
+            </transitions>
+        </state>
+        <state code="intermediate" type="application">
+            <activities>
+                <activity code="FCD82348-5523-480F-8E8B-CFFF2D2E8642"
+                          script="entity.SetProperty(&quot;VisitedIntermediateState&quot;, true);"
+                          scriptType="csharp"
+                          type="synchronous" />
+            </activities>
+            <transitions>
+                <transition moveToState="final" type="synchronous" />
+            </transitions>
+        </state>
+        <state code="failed" type="failed">
+            <activities>
+                <activity code="noOp" type="synchronous" />
+            </activities>
+        </state>
+        <state code="final" type="final">
+            <activities>
+                <activity code="noOp" type="synchronous" />
+                <activity code="C379060D-5CCB-40CC-B701-25152CC51903"
+                          script="await workflowRuntime.SendEventToParentWorkflow(context, &quot;awaitingSigner&quot;, cancellationToken);"
+                          scriptType="csharp"
+                          type="synchronous" />
+            </activities>
+        </state>
+    </states>
+</workflow>

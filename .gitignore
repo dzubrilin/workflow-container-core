@@ -1,0 +1,35 @@
+# OS junk files #
+#################
+[Tt]humbs.db
+
+# Auto generated folders #
+##########################
+*.[Cc]ache
+*.[Oo]bj
+*.user
+.idea/
+.vs/
+/codestyles
+/_windows
+[Bb]in
+[Dd]ebug*/
+[Oo]bj/
+[Rr]elease*/
+
+# Auto generated files #
+##########################
+/_windows/git.xml
+/_windows/keymap.xml
+/_windows/laf.xml
+/codestyles/Default.xml
+/colors.scheme.xml
+/debugger.xml
+/editor.codeinsight.xml
+/editor.xml
+/find.xml
+/ide.general.xml
+/project.default.xml
+/remote-servers.xml
+/ui.lnf.xml
+/doc/Workflow Electronic Signature.png
+/doc/Workflow Electronic Signature.png

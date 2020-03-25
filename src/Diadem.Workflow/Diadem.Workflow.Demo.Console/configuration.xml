@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configurationSections>
+    <configurationSection key="Host">
+        <configuration key="ConfigurationDirectory" value="" />
+    </configurationSection>
+    <configurationSection key="Core">
+        <configuration key="ApplicationCode" value="DIADEM_WORKFLOW" />
+        <configuration key="ApplicationAesEncryptionKey" value="91B5DECD-8F87-4534-B3B2-A52910979923" />
+        <configuration key="AssetsDirectory" value="..\..\..\..\..\..\libraries\assets\" />
+        <configuration key="TempDirectory" value="C:\Data\temp" />
+    </configurationSection>
+    <configurationSection key="BlobStore">
+        <configuration key="AccessKey" value="flow-storage" />
+        <configuration key="SecretKey" value="flow-storageKEY" />
+        <configuration key="Endpoint" value="localhost:9000" />
+        <configuration key="Location" value="us-east-1" />
+        <configuration key="RootDirectory" value="workflow" />
+    </configurationSection>
+    <configurationSection key="WorkflowMongoDB">
+        <configuration key="ServerHost" value="localhost" />
+        <configuration key="ServerPort" value="27017" />
+        <configuration key="DatabaseName" value="workflow" />
+        <configuration key="CredentialDatabaseName" value="admin" />
+        <configuration key="CredentialUserName" value="flow" />
+        <configuration key="CredentialPassword" value="flow" />
+    </configurationSection>
+    <configurationSection key="RabbitMQ">
+        <configuration key="Address" value="rabbitmq://localhost" />
+        <configuration key="Port" value="5672" />
+        <configuration key="UserName" value="rabbitmq" />
+        <configuration key="Password" value="rabbitmq" />
+        <configuration key="ReceiveQueueName" value="Diadem.Workflow.Core.Model:IEventRequestWorkflowMessage" />
+    </configurationSection>
+</configurationSections>
